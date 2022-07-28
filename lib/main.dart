@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import "package:provider/provider.dart";
+/**Screens */
+import "./screens//places_list_screen.dart";
+/**Providers */
+import "./providers/places_provider.dart";
 
 void main() {
   runApp(const MyApp());
@@ -10,36 +15,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: Colors.amber, // Your accent color
+    return ChangeNotifierProvider(
+      create: (ctx) => PlaceProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme:
+              ColorScheme.fromSwatch(primarySwatch: Colors.indigo).copyWith(
+            secondary: Colors.amber, // Your accent color
+          ),
         ),
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Geo Places"),
-      ),
-      body: const Center(
-        child:  Text("Content goes here"),
+        home: const PlacesScreen(),
       ),
     );
   }
