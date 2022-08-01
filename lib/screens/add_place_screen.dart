@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widget/image_input.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   static const routeName = "/add-place";
@@ -36,13 +37,14 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       },
                       controller: titleController,
                       decoration: InputDecoration(
-                          hintText: "Title",
+                          labelText: "Title",
                           counterText:
                               '${_enteredText.length.toString()} character(s)'),
                     ),
                     const SizedBox(
                       height: 8,
-                    )
+                    ),
+                    const ImageInput()
                   ],
                 ),
               ),

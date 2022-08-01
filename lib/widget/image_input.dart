@@ -9,7 +9,7 @@ class ImageInput extends StatefulWidget {
 }
 
 class _ImageInputState extends State<ImageInput> {
-  late File? _storedImage;
+  File? _storedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _ImageInputState extends State<ImageInput> {
         ),
         Expanded(
           child: TextButton.icon(
-            onPressed: null,
+            onPressed: () {},
             icon: const Icon(Icons.camera),
             label: const Text("Take picture"),
           ),
