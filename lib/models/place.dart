@@ -15,7 +15,7 @@ class GeoLocation {
 class Place {
   final String? id;
   final String? title;
-  final GeoLocation location;
+  final GeoLocation? location;
   final File image;
 
   Place({
