@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:geo_places/providers/places_provider.dart';
-import 'package:geo_places/screens/add_place_screen.dart';
 import 'package:provider/provider.dart';
-
+import 'package:geo_places/screens/add_place_screen.dart';
+import "../../providers/places_provider.dart";
 class PlacesScreen extends StatelessWidget {
   const PlacesScreen({Key? key}) : super(key: key);
 
