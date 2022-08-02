@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geo_places/providers/places_provider.dart';
+import "../providers/places_provider.dart";
 import '../widget/image_input.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
@@ -22,13 +22,15 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     _pickedImage = pickedImage;
   }
 
-  void savePlace() {
+  void _savePlace() {
     if (titleController.text.isEmpty || _pickedImage == null) {
-      Provider.of<PlaceProvider>(context, listen: false).addPlace(
-        titleController.text,
-        _pickedImage!,
-      );
+      return;
     }
+    Provider.of<PlaceProvider>(context, listen: false).addPlace(
+      titleController.text,
+      _pickedImage!,
+    );
+    Navigator.of(context).pop();
   }
 
   @override
@@ -68,7 +70,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             ),
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: _savePlace,
             icon: const Icon(Icons.add),
             label: const Text('Add'),
             style: ElevatedButton.styleFrom(

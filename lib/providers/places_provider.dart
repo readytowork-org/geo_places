@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import '../models/place.dart';
-import 'dart:io';
+
 
 class PlaceProvider with ChangeNotifier {
   final List<Place> _items = [];
@@ -18,7 +17,7 @@ class PlaceProvider with ChangeNotifier {
       location: null,
       image: selectedImage,
     );
-    items.add(newPlace);
+    _items.add(newPlace);
     notifyListeners();
   }
 }

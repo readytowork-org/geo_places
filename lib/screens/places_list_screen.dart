@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:geo_places/providers/places_provider.dart';
 import 'package:geo_places/screens/add_place_screen.dart';
+import 'package:provider/provider.dart';
 
 class PlacesScreen extends StatelessWidget {
   const PlacesScreen({Key? key}) : super(key: key);
@@ -17,8 +20,22 @@ class PlacesScreen extends StatelessWidget {
           )
         ],
       ),
-      body: const Center(
-        child: CircularProgressIndicator(),
+      body: Consumer<PlaceProvider>(
+        child: const Center(
+          child: Text("No places added"),
+        ),
+        builder: (ctx, places, ch) => places.items.isEmpty
+            ? ch as Widget
+            : ListView.builder(
+                itemBuilder: (_, i) => ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: FileImage(places.items[i].image),
+                  ),
+                  title: Text(places.items[i].title!),
+                  subtitle: const Text("Location name"),
+                ),
+                itemCount: places.items.length,
+              ),
       ),
     );
   }
