@@ -3,9 +3,8 @@ import 'package:flutter/foundation.dart';
 import '../models/place.dart';
 import '../helpers/db_helper.dart';
 
-
 class PlaceProvider with ChangeNotifier {
-  final List<Place> _items = [];
+  late List<Place> _items = [];
 
   List<Place> get items {
     return [..._items];
@@ -26,5 +25,20 @@ class PlaceProvider with ChangeNotifier {
       'title': newPlace.title!,
       'image': newPlace.image,
     });
+  }
+
+  Future<void> fetchAndsetPlaces() async {
+    final dataList = await DBHelper.getData('places');
+
+    _items = dataList
+        .map(
+          (item) => Place(
+            id: item['id'],
+            title: item['title'],
+            location: null,
+            image: File(item['image']),
+          ),
+        )
+        .toList();
   }
 }
