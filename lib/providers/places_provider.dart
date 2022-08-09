@@ -40,5 +40,6 @@ class PlaceProvider with ChangeNotifier {
           ),
         )
         .toList();
+        notifyListeners();
   }
 }
