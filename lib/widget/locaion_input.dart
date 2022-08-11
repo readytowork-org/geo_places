@@ -22,6 +22,7 @@ class _LocationInputState extends State<LocationInput> {
               color: Colors.grey,
             ),
           ),
+           alignment: Alignment.center,
           child: previewImage == null
               ? const Text(
                   'No location chosen',
