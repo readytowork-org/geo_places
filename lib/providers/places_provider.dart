@@ -18,13 +18,14 @@ class PlaceProvider with ChangeNotifier {
       image: selectedImage,
     );
     _items.add(newPlace);
-    notifyListeners();
+
 
     DBHelper.insert('places', {
       'id': newPlace.id!,
       'title': newPlace.title!,
       'image': newPlace.image,
     });
+        notifyListeners();
   }
 
   Future<void> fetchAndsetPlaces() async {
