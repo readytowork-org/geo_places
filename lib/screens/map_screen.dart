@@ -8,7 +8,7 @@ class MapScreen extends StatefulWidget {
 
   MapScreen({
     this.initialLocation =
-        const GeoLocation(latitude: 337.422131, longitude: -122.084801),
+        const GeoLocation(latitude: 37.42796133580664, longitude: -122.085749655962),
     this.isSelecting = false,
   });
 
@@ -29,7 +29,7 @@ class _MapScreenState extends State<MapScreen> {
             widget.initialLocation.latitude!,
             widget.initialLocation.longitude!,
           ),
-          zoom: 16
+          zoom: 14
         ),
       ),
     );
