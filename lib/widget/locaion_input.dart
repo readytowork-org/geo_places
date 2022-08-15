@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../helpers/location_helper.dart';
 import "package:location/location.dart";
 
 class LocationInput extends StatefulWidget {
@@ -9,12 +10,15 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
-  String? previewImage;
+  String? _previewImage;
 
    Future<void> _getCurrentLocation() async{
-    final location = await Location().getLocation();
-    print(location.latitude);
-    print(location.longitude);
+    final cordinates = await Location().getLocation();
+    final mapUrl = LocationHelper.generateLocationPreviewImage(latitude: cordinates.latitude!, longitude: cordinates.longitude!);
+    setState(() {
+      print(mapUrl);
+      _previewImage = mapUrl;
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -30,12 +34,12 @@ class _LocationInputState extends State<LocationInput> {
             ),
           ),
            alignment: Alignment.center,
-          child: previewImage == null
+          child: _previewImage == null
               ? const Text(
                   'No location chosen',
                   textAlign: TextAlign.center,
                 )
-              : Image.network(previewImage!),
+              : Image.network(_previewImage!),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
