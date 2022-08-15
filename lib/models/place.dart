@@ -5,10 +5,10 @@ class GeoLocation {
   final double? latitude;
   final String? name;
 
-  GeoLocation({
+  const GeoLocation({
     required this.longitude,
     required this.latitude,
-    required this.name,
+    this.name,
   });
 }
 
