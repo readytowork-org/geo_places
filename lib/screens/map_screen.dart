@@ -7,8 +7,10 @@ class MapScreen extends StatefulWidget {
   final bool isSelecting;
 
   MapScreen({
-    this.initialLocation =
-        const GeoLocation(latitude: 37.42796133580664, longitude: -122.085749655962),
+    this.initialLocation = const GeoLocation(
+      latitude: 37.42796133580664,
+      longitude: -122.085749655962,
+    ),
     this.isSelecting = false,
   });
 
@@ -17,6 +19,15 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  LatLng? _pickedLocation;
+
+  void _selectLocation(LatLng position) {
+    print(position.latitude);
+    setState(() {
+      _pickedLocation = position;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +40,21 @@ class _MapScreenState extends State<MapScreen> {
             widget.initialLocation.latitude!,
             widget.initialLocation.longitude!,
           ),
-          zoom: 14
+          zoom: 14,
         ),
+        onTap: widget.isSelecting ? _selectLocation : null,
+        markers: _pickedLocation == null
+            ? <Marker>{}
+            : {
+                Marker(
+                  markerId: const MarkerId('m1'),
+                  position: _pickedLocation ??
+                      LatLng(
+                        widget.initialLocation.latitude!,
+                        widget.initialLocation.longitude!,
+                      ),
+                ),
+              },
       ),
     );
   }
