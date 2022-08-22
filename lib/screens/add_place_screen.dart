@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/place.dart';
-import "../providers/places_provider.dart";
-import '../widget/image_input.dart';
-import '../widget/location_input.dart';
+import '../../models/place.dart';
+import "../../providers/places_provider.dart";
+import '../../widget/image_input.dart';
+import '../../widget/location_input.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 
