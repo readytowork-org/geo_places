@@ -26,7 +26,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   }
 
   void _selectPlace(double lat, double lng){
-    _pickedLocation = GeoLocation(longitude: lat, latitude: lng);
+    _pickedLocation = GeoLocation(longitude: lng, latitude: lat);
 
   }
 

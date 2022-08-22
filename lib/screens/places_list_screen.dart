@@ -39,7 +39,7 @@ class PlacesScreen extends StatelessWidget {
                             backgroundImage: FileImage(places.items[i].image),
                           ),
                           title: Text(places.items[i].title!),
-                          subtitle: const Text("Location name"),
+                          subtitle: Text(places.items[i].location!.address.toString()),
                         ),
                         itemCount: places.items.length,
                       ),

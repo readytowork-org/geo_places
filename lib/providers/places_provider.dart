@@ -52,7 +52,7 @@ class PlaceProvider with ChangeNotifier {
           (item) => Place(
             id: item['id'],
             title: item['title'],
-            location: null,
+            location: GeoLocation(latitude: item['loc_lat'], longitude: item['loc_lng'], address: item['address']),
             image: File(item['image']),
           ),
         )
