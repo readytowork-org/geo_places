@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import "../providers/places_provider.dart";
 import '../widget/image_input.dart';
-import '../widget/locaion_input.dart';
+import '../widget/location_input.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 
