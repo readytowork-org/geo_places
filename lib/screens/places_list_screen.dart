@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:geo_places/screens/add_place_screen.dart';
+// import '../screens/add_place_screen.dart';
+import './add_place_screen.dart';
+import './place_detail_screen.dart';
 import "../../providers/places_provider.dart";
+
 
 class PlacesScreen extends StatelessWidget {
   const PlacesScreen({Key? key}) : super(key: key);
@@ -39,7 +42,14 @@ class PlacesScreen extends StatelessWidget {
                             backgroundImage: FileImage(places.items[i].image),
                           ),
                           title: Text(places.items[i].title!),
-                          subtitle: Text(places.items[i].location!.address.toString()),
+                          subtitle: Text(
+                              places.items[i].location!.address.toString()),
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                              PlaceDetailScreen.routeName,
+                              arguments: places.items[i].id,
+                            );
+                          },
                         ),
                         itemCount: places.items.length,
                       ),
