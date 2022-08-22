@@ -11,13 +11,19 @@ class PlaceProvider with ChangeNotifier {
     return [..._items];
   }
 
-  Future<void> addPlace(
-      String title, File selectedImage, GeoLocation pickeLocation) async {
+  Place getById(String id) {
+    return _items.firstWhere((item) => item.id == id);
+  }
 
+  Future<void> addPlace(
+    String title,
+    File selectedImage,
+    GeoLocation pickeLocation,
+  ) async {
     final address = await LocationHelper.getPlaceAddress(
       pickeLocation.latitude as double,
       pickeLocation.longitude as double,
-    ); 
+    );
 
     final updatedLocation = GeoLocation(
       longitude: pickeLocation.longitude,
@@ -27,18 +33,17 @@ class PlaceProvider with ChangeNotifier {
 
     final newPlace = Place(
       id: DateTime.now().toString(),
+      image: selectedImage,
       title: title,
       location: updatedLocation,
-      image: selectedImage,
     );
     _items.add(newPlace);
-
     DBHelper.insert('places', {
       'id': newPlace.id!,
       'title': newPlace.title!,
-      'image': newPlace.image,
+      'image': newPlace.image.path,
       'loc_lat': newPlace.location?.latitude as double,
-      'loc_lng':  newPlace.location?.longitude as double,
+      'loc_lng': newPlace.location?.longitude as double,
       'address': newPlace.location?.address as String,
     });
     notifyListeners();
@@ -52,7 +57,10 @@ class PlaceProvider with ChangeNotifier {
           (item) => Place(
             id: item['id'],
             title: item['title'],
-            location: GeoLocation(latitude: item['loc_lat'], longitude: item['loc_lng'], address: item['address']),
+            location: GeoLocation(
+                latitude: item['loc_lat'],
+                longitude: item['loc_lng'],
+                address: item['address']),
             image: File(item['image']),
           ),
         )
