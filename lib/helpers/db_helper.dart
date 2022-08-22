@@ -8,7 +8,7 @@ class DBHelper {
     return  sql.openDatabase(path.join(dbPath, 'geoPlaces.db'),
         onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE places(id TEXT PRIMARY KEY, title TEXT, image TEXT)');
+          'CREATE TABLE places(id TEXT PRIMARY KEY, title TEXT, image TEXT, loc_lat REAL, loc_lng REAL, address TEXT)');
     }, version: 1);
   }
   static Future<void> insert(String table, Map<String, Object> data) async{

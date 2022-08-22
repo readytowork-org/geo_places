@@ -3,12 +3,12 @@ import 'dart:io';
 class GeoLocation {
   final double? longitude;
   final double? latitude;
-  final String? name;
+  final String? address;
 
   const GeoLocation({
     required this.longitude,
     required this.latitude,
-    this.name,
+    this.address,
   });
 }
 
